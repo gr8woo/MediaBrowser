@@ -2097,6 +2097,8 @@ public class MediaBrowser: UIViewController, UIScrollViewDelegate, UIActionSheet
         // Call delegate method and let them dismiss us
         if let d = delegate {
             d.mediaBrowserDidFinishModalPresentation(mediaBrowser: self)
+        } else {
+            self.dismiss(animated: true, completion: nil)
         }
         // dismissViewControllerAnimated:true completion:nil]
     }
