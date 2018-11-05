@@ -932,12 +932,18 @@ public class MediaBrowser: UIViewController, UIScrollViewDelegate, UIActionSheet
         
         if index < mediaArray.count && index >= 0 {
             if mediaArray[index] == nil {
+                
+                if nil == media && fixedMediasArray != nil && index < fixedMediasArray!.count {
+                    media = fixedMediasArray![index]
+                    media?.placeholderImage = self.placeholderImage?.image
+                    
+                    if media != nil {
+                        mediaArray[index] = media
+                    }
+                }
+                
                 if let d = delegate {
                     media = d.media(for: self, at: index)
-                    
-                    if nil == media && fixedMediasArray != nil && index < fixedMediasArray!.count {
-                        media = fixedMediasArray![index]
-                    }
                     media?.placeholderImage = self.placeholderImage?.image
                     
                     if media != nil {
